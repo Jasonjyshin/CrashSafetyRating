@@ -85,7 +85,18 @@ else:
             print("Please enter a valid number")
 
 
+#NEXT STEPS - Below is the output so far. Next function should be requesting safety rating using VehicleID selected below. 
+# Select a model to view trim levels: rx 350
 
+#Available trims for a 2021 lexus RX 350 are:
+#1. 2021 Lexus RX 350 SUV FWD Later Release
+#2. 2021 Lexus RX 350 SUV AWD Later Release
+#3. 2021 Lexus RX 350 SUV AWD Early Release
+#4. 2021 Lexus RX 350 SUV FWD Early Release
+
+#Select trim number: 2
+
+#Selected: 2021 Lexus RX 350 SUV AWD Later Release
 
 
     
