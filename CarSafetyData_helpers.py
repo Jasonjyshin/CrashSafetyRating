@@ -27,6 +27,8 @@ def get_models_for_brand_year(year, make):
     url = f"https://api.nhtsa.gov/SafetyRatings/modelyear/{year}/make/{make}?format=json"
     response = requests.get(url)
     return response.json().get("Results", [])
+    #return [model["Model"] for model in results] if results else []
+
 
 def get_vehicle_ids_from_models(models):
     vehicle_ids = []
@@ -61,7 +63,7 @@ else:
 
 #ask user to select brand from year selected
 
-brand_input = input(f"Select an available brand from the year {year_input}").lower()
+brand_input = input(f"Select an available brand from the year {year_input}: ").lower()
 brand_year_models = get_models_for_brand_year(year_input, brand_input)
 if brand_input not in brands:
     print(f"{brand_input} crash data is not available for the year {year_input}")
