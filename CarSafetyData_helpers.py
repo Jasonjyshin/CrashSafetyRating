@@ -56,17 +56,35 @@ def vehicle_trims(year, make, model):
     url = f"https://api.nhtsa.gov/SafetyRatings/modelyear/{year}/make/{make}/model/{model}"
     response = requests.get(url)
     results = response.json().get("Results", [])  
-    return [vehicleDescription["VehicleDescription"] for vehicleDescription in results]
+    return results #return full results to access both description and ID
 
 
 
 #Select vehicle model to see the available trims and their vehicleID
 model_selection = input("Select a model to view trim levels: ").upper()
-vehicle_trims = vehicle_trims(year_input, brand_input, model_selection)
+trim_data = vehicle_trims(year_input, brand_input, model_selection)
 if model_selection not in brand_year_models:
     print("Invalid model selection")
 else:
-    print(f"Available trims for a {year_input} {brand_input} {model_selection} are: {vehicle_trims}")
+    #display available trims with indices
+    print(f"\nAvailable trims for a {year_input} {brand_input} {model_selection} are: ")
+    for i, trim in enumerate(trim_data, 1):
+        print(f"{i}. {trim['VehicleDescription']}")
+
+    while True:
+        try:
+            trim_choice = int(input("\nSelect trim number: ")) - 1 
+            if 0 <= trim_choice < len(trim_data):
+                selected_trim = trim_data[trim_choice]
+                vehicle_id = selected_trim['VehicleId']
+                print(f"\nSelected: {selected_trim['VehicleDescription']}")
+                break
+            else:
+                print("Invalid selection. Please choose a number from the list")
+        except ValueError:
+            print("Please enter a valid number")
+
+
 
 
 
