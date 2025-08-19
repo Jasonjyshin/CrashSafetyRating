@@ -57,8 +57,16 @@ if not brands:
     print("No brands found for that year")
 else:
     print(f"Found {len(brands)} brands for {year_input}: ")
-    print(brands[:10]) #show first 10 for preview
+    print(brands)
 
+#ask user to select brand from year selected
+
+brand_input = input(f"Select an available brand from the year {year_input}").lower()
+brand_year_models = get_models_for_brand_year(year_input, brand_input)
+if brand_input not in brands:
+    print(f"{brand_input} crash data is not available for the year {year_input}")
+else:
+    print(f"Available models for {brand_input} in the year {year_input} are: {brand_year_models}")
 
 
 
